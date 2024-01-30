@@ -16,8 +16,8 @@ public class DBInit
         using var serviceScope = app.ApplicationServices.CreateScope();
         FlashcardProjectDbContext context = serviceScope.ServiceProvider.GetRequiredService<FlashcardProjectDbContext>();
 
-        context.Database.EnsureDeleted();
-        context.Database.EnsureCreated();
+        //context.Database.EnsureDeleted();
+        //context.Database.EnsureCreated();
 
         var decksFromAnki = await AnkiDeckImportService.CreateDecksFromAnki();
 
