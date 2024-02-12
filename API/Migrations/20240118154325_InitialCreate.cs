@@ -51,8 +51,8 @@ namespace FlashcardProject.Migrations
                 {
                     FlashcardId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Question = table.Column<string>(type: "TEXT", nullable: false),
-                    Answer = table.Column<string>(type: "TEXT", nullable: false),
+                    Front = table.Column<string>(type: "TEXT", nullable: false),
+                    Back = table.Column<string>(type: "TEXT", nullable: false),
                     CreationDate = table.Column<DateTime>(type: "TEXT", nullable: false),
                     DeckId = table.Column<int>(type: "INTEGER", nullable: true)
                 },

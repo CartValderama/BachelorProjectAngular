@@ -1,7 +1,7 @@
 export interface IFlashcard {
   FlashcardId: number;
-  Question: string;
-  Answer: string;
+  Front: string;
+  Back: string;
   CreationDate: string;
   DeckId: number;
 }

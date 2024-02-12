@@ -39,7 +39,7 @@
   </div>
   <!-- Instructions -->
   <div class="instruction mt-4 p-3">
-    <p>Flip the flashcard to reveal the Answer </p>
+    <p>Flip the flashcard to reveal the Back </p>
   </div>
   <!-- Progress bar -->
   <div class="container mt-3 mb-4">
@@ -65,7 +65,7 @@
                   <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                   <span class="sr-only">Loading...</span>
                 </div>
-                Get Hint <i class="fa-solid fa-circle-question"></i>
+                Get Hint <i class="fa-solid fa-circle-front"></i>
               </a>
             </div>
             <div class="wrap" [id]="'hintContainer_' + flashcard.FlashcardId" hidden>
@@ -76,12 +76,12 @@
             <div class="flip-card" (click)="rotateCard($event)">
               <div class="flip-card-inner">
                 <div class="flip-card-front d-flex flex-column justify-content-center">
-                  <i class="fa-solid fa-clipboard-question fa-2x mb-2"></i>
-                  <p>{{ flashcard.Question }}</p>
+                  <i class="fa-solid fa-clipboard-front fa-2x mb-2"></i>
+                  <p>{{ flashcard.Front }}</p>
                 </div>
                 <div class="flip-card-back d-flex flex-column justify-content-center">
                   <i class="fa-solid fa-comment-dots fa-2x mb-2"></i>
-                  <p>{{ flashcard.Answer }}</p>
+                  <p>{{ flashcard.Back }}</p>
                 </div>
               </div>
             </div>

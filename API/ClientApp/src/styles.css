@@ -374,18 +374,18 @@ li {
 }
 
 /* Styling for flashcard type two */
-.question,
-.answer {
+.front,
+.back {
   padding: 0.5rem;
   cursor: pointer;
   transition: 500ms;
 }
 
-.question {
+.front {
   background-color: lightblue;
 }
 
-.answer {
+.back {
   background-color: lightseagreen;
 }
 
@@ -455,8 +455,8 @@ li {
     font-size: 15px;
   }
 
-  .question,
-  .answer,
+  .front,
+  .back,
   #ins {
     padding: 0.4rem;
     font-size: 14px;
@@ -479,8 +479,8 @@ li {
     width: 15rem;
   }
 
-  .question,
-  .answer,
+  .front,
+  .back,
   #ins {
     padding: 0.4rem;
     font-size: 12px;
@@ -508,8 +508,8 @@ li {
       width: 12rem;
       left: 220%;
   }
-  .question,
-  .answer,
+  .front,
+  .back,
   #ins {
     padding: 0.4rem;
     font-size: 10px;

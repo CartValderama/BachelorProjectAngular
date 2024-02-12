@@ -53,7 +53,7 @@ namespace FlashcardProject.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Answer")
+                    b.Property<string>("Back")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -63,7 +63,7 @@ namespace FlashcardProject.Migrations
                     b.Property<int?>("DeckId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Question")
+                    b.Property<string>("Front")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
