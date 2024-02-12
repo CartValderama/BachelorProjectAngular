@@ -23,21 +23,21 @@
             [formGroup]="flashcardForm" (ngSubmit)="onSubmit()">
         <div>
           <div class="form-outline mb-4">
-            <!-- Flashcard question input field -->
-            <label for="question">Question:</label>
-            <input id="question" formControlName="question" class="form-control" />
-            <div id="validationQuestion">
-              <div *ngIf="flashcardForm.get('question')?.invalid" class="text-danger">
+            <!-- Flashcard front input field -->
+            <label for="front">Front:</label>
+            <input id="front" formControlName="front" class="form-control" />
+            <div id="validationFront">
+              <div *ngIf="flashcardForm.get('front')?.invalid" class="text-danger">
                 Maximum 120 characters
               </div>
             </div>
           </div>
           <div class="form-outline mb-4">
-            <!-- Flashcard answer input field -->
-            <label for="answer">Answer:</label>
-            <input id="answer" formControlName="answer" class="form-control" />
-            <div id="validationAnswer">
-              <div *ngIf="flashcardForm.get('answer')?.invalid" class="text-danger">
+            <!-- Flashcard back input field -->
+            <label for="back">Back:</label>
+            <input id="back" formControlName="back" class="form-control" />
+            <div id="validationBack">
+              <div *ngIf="flashcardForm.get('back')?.invalid" class="text-danger">
                 Maximum 120 characters
               </div>
             </div>

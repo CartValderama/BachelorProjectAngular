@@ -16,8 +16,8 @@ public class DBInit
         using var serviceScope = app.ApplicationServices.CreateScope();
         FlashcardProjectDbContext context = serviceScope.ServiceProvider.GetRequiredService<FlashcardProjectDbContext>();
 
-        //context.Database.EnsureDeleted();
-        //context.Database.EnsureCreated();
+        context.Database.EnsureDeleted();
+        context.Database.EnsureCreated();
 
         var decksFromAnki = await AnkiDeckImportService.CreateDecksFromAnki();
 
@@ -38,43 +38,43 @@ public class DBInit
                     {
                         new Flashcard
                         {
-                            Question = "Who was the first Emperor of Rome?",
-                            Answer = "Augustus, formerly known as Octavian, was the first Emperor of Rome."
+                            Front = "Who was the first Emperor of Rome?",
+                            Back = "Augustus, formerly known as Octavian, was the first Emperor of Rome."
                         },
                         new Flashcard
                         {
-                            Question = "Who wrote \"The Communist Manifesto\"?",
-                            Answer = "Karl Marx and Friedrich Engels co-authored \"The Communist Manifesto\" in 1848."
+                            Front = "Who wrote \"The Communist Manifesto\"?",
+                            Back = "Karl Marx and Friedrich Engels co-authored \"The Communist Manifesto\" in 1848."
                         },
                         new Flashcard
                         {
-                            Question = "What was the primary cause of the Civil War in the United States?",
-                            Answer = "The primary cause of the American Civil War was the issue of slavery."
+                            Front = "What was the primary cause of the Civil War in the United States?",
+                            Back = "The primary cause of the American Civil War was the issue of slavery."
                         },
                         new Flashcard
                         {
-                            Question = "Who was the leader of the Nazi Party in Germany during World War II?",
-                            Answer = "Adolf Hitler was the leader of the Nazi Party in Germany during World War II."
+                            Front = "Who was the leader of the Nazi Party in Germany during World War II?",
+                            Back = "Adolf Hitler was the leader of the Nazi Party in Germany during World War II."
                         },
                         new Flashcard
                         {
-                            Question = "What event is often considered the beginning of the Great Depression in the United States?",
-                            Answer = "The stock market crash of 1929 is often seen as the beginning of the Great Depression."
+                            Front = "What event is often considered the beginning of the Great Depression in the United States?",
+                            Back = "The stock market crash of 1929 is often seen as the beginning of the Great Depression."
                         },
                         new Flashcard
                         {
-                            Question = "When did the Berlin Wall fall, leading to the reunification of Germany?",
-                            Answer = "The Berlin Wall fell on November 9, 1989, leading to the reunification of East and West Germany."
+                            Front = "When did the Berlin Wall fall, leading to the reunification of Germany?",
+                            Back = "The Berlin Wall fell on November 9, 1989, leading to the reunification of East and West Germany."
                         },
                         new Flashcard
                         {
-                            Question = "When was the American Declaration of Independence adopted?",
-                            Answer = "The American Declaration of Independence was adopted on July 4, 1776."
+                            Front = "When was the American Declaration of Independence adopted?",
+                            Back = "The American Declaration of Independence was adopted on July 4, 1776."
                         },
                         new Flashcard
                         {
-                            Question = "When was the Apollo program by NASA?",
-                            Answer = "The NASA's Apollo program was achieved in 1969."
+                            Front = "When was the Apollo program by NASA?",
+                            Back = "The NASA's Apollo program was achieved in 1969."
                         }
                     }
                 }
@@ -110,44 +110,44 @@ public class DBInit
                         {
                             new Flashcard
                             {
-                                Question = "What is a Pizza?",
-                                Answer = "Delicious Italian dish with a thin crust topped with tomato sauce, cheese, and various toppings."
+                                Front = "What is a Pizza?",
+                                Back = "Delicious Italian dish with a thin crust topped with tomato sauce, cheese, and various toppings."
                             },
                             new Flashcard
                             {
-                                Question = "What is a Fried Chicken Leg?",
-                                Answer = "Crispy and succulent chicken leg that is deep-fried to perfection, often served as a popular fast food item."
+                                Front = "What is a Fried Chicken Leg?",
+                                Back = "Crispy and succulent chicken leg that is deep-fried to perfection, often served as a popular fast food item."
                             },
                             new Flashcard
                             {
-                                Question = "What is French Fries?",
-                                Answer = "Crispy, golden-brown potato slices seasoned with salt and often served as a popular side dish or snack."
+                                Front = "What is French Fries?",
+                                Back = "Crispy, golden-brown potato slices seasoned with salt and often served as a popular side dish or snack."
                             },
                             new Flashcard
                             {
-                                Question = "What is Grilled Ribs?",
-                                Answer = "Tender and flavorful ribs grilled to perfection, usually served with barbecue sauce."
+                                Front = "What is Grilled Ribs?",
+                                Back = "Tender and flavorful ribs grilled to perfection, usually served with barbecue sauce."
                             },
                             new Flashcard
                             {
-                                Question = "What is Tacos?",
-                                Answer = "Tortillas filled with various ingredients such as meat, vegetables, and salsa, folded into a delicious meal."
+                                Front = "What is Tacos?",
+                                Back = "Tortillas filled with various ingredients such as meat, vegetables, and salsa, folded into a delicious meal."
 
                             },
                             new Flashcard
                             {
-                                Question = "What is Fish and Chips?",
-                                Answer = "Classic British dish featuring battered and deep-fried fish served with thick-cut fried potatoes."
+                                Front = "What is Fish and Chips?",
+                                Back = "Classic British dish featuring battered and deep-fried fish served with thick-cut fried potatoes."
                             },
                             new Flashcard
                             {
-                                Question = "What is a Cider?",
-                                Answer = "Refreshing alcoholic beverage made from fermented apple juice, available in various flavors."
+                                Front = "What is a Cider?",
+                                Back = "Refreshing alcoholic beverage made from fermented apple juice, available in various flavors."
                             },
                             new Flashcard
                             {
-                                Question = "What is a Coke?",
-                                Answer = "Popular carbonated soft drink known for its sweet and refreshing taste. A short nickname for 'Cocaine'.",
+                                Front = "What is a Coke?",
+                                Back = "Popular carbonated soft drink known for its sweet and refreshing taste. A short nickname for 'Cocaine'.",
                             }
                         }
                     }

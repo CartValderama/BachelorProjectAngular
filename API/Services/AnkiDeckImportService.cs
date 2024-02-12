@@ -10,7 +10,7 @@ namespace FlashcardProject.Services;
 public class AnkiDeckImportService
 {
     // private static readonly string BasePath = @""; 
-    private static readonly string BasePath = @"C:\Users\elija\source\repos\FlashcardProject\FlashcardProjectFinal\Services\";
+    private static readonly string BasePath = @"C:\Users\elija\source\repos\BachelorProject\API\Services\";
 
     private class ImportDetail
     {
@@ -117,8 +117,8 @@ public class AnkiDeckImportService
             {
                 var newFlashcard = new Flashcard
                 {
-                    Question = flashcardParts[0],
-                    Answer = flashcardParts[1]
+                    Front = flashcardParts[0],
+                    Back = flashcardParts[1]
                 };
                 flashcards.Add(newFlashcard);
             }

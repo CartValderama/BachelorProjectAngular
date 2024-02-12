@@ -12,12 +12,12 @@ import { DeckService } from "../services/deck.service";
 
 export class FlashcardtwoComponent implements OnInit {
   decks: IDeck[] = [];
-  randomQuestions: IFlashcard[] = []
+  randomFronts: IFlashcard[] = []
   total: number = 0;
   correctMatches: number = 0;
-  randomAnswers: IFlashcard[] = []
-  questionStatus: boolean = false;
-  answerStatus: boolean = false;
+  randomBacks: IFlashcard[] = []
+  frontStatus: boolean = false;
+  backStatus: boolean = false;
   deck: IDeck = {
     DeckId: 0,
     DeckName: "",
@@ -26,17 +26,17 @@ export class FlashcardtwoComponent implements OnInit {
     FolderId: 0
   };
   flashcards: IFlashcard[] = []
-  flashcardQuestion: IFlashcard = {
+  flashcardFront: IFlashcard = {
     FlashcardId: 0,
-    Question: "",
-    Answer: "",
+    Front: "",
+    Back: "",
     CreationDate: "",
     DeckId: 0
   }
-  flashcardAnswer: IFlashcard = {
+  flashcardBack: IFlashcard = {
     FlashcardId: 0,
-    Question: "",
-    Answer: "",
+    Front: "",
+    Back: "",
     CreationDate: "",
     DeckId: 0
   }
@@ -58,8 +58,8 @@ export class FlashcardtwoComponent implements OnInit {
     this._flashcardService.getFlashcardsByDeckId(deckId)
       .subscribe(data => { // subscribe() used to receive the data when the response is received
         this.flashcards = data;
-        this.randomQuestions = this.shuffleFlashcard(this.flashcards);
-        this.randomAnswers = this.shuffleFlashcard(this.flashcards);
+        this.randomFronts = this.shuffleFlashcard(this.flashcards);
+        this.randomBacks = this.shuffleFlashcard(this.flashcards);
         this.flashcards.forEach(flashcard => {
           this.total++;
         })
@@ -91,70 +91,70 @@ export class FlashcardtwoComponent implements OnInit {
     return array.slice().sort(() => Math.random() - 0.5);
   }
 
-  // Method to highlight and check selected question in the flashcard game
-  checkQuestion(selectedFlashcard: IFlashcard): void {
-    // Reset styles for all questions
-    const allQuestions = document.querySelectorAll('.question') as NodeListOf<HTMLElement>;
-    this.questionStatus = true;
-    allQuestions.forEach((question: HTMLElement) => {
-      question.style.background = "lightblue";
+  // Method to highlight and check selected front in the flashcard game
+  checkFront(selectedFlashcard: IFlashcard): void {
+    // Reset styles for all fronts
+    const allFronts = document.querySelectorAll('.front') as NodeListOf<HTMLElement>;
+    this.frontStatus = true;
+    allFronts.forEach((front: HTMLElement) => {
+      front.style.background = "lightblue";
     });
 
-    // Highlight the clicked question
-    const clickedQuestion = document.getElementById(selectedFlashcard.FlashcardId + "_question") as HTMLElement;
-    if (clickedQuestion) {
-      clickedQuestion.style.background = "green";
+    // Highlight the clicked front
+    const clickedFront = document.getElementById(selectedFlashcard.FlashcardId + "_front") as HTMLElement;
+    if (clickedFront) {
+      clickedFront.style.background = "green";
     }
-    this.flashcardQuestion = selectedFlashcard;
+    this.flashcardFront = selectedFlashcard;
 
-    // Check if both question and answer have been selected
-    if (this.questionStatus && this.answerStatus) {
+    // Check if both front and back have been selected
+    if (this.frontStatus && this.backStatus) {
       this.checker();
-      this.questionStatus = false;
-      this.answerStatus = false;
+      this.frontStatus = false;
+      this.backStatus = false;
     }
   }
 
-  // Method to highlight and check selected answer in the flashcard game
-  checkAnswer(selectedFlashcard: IFlashcard): void {
-    // Reset styles for all answers
-    const allAnswers = document.querySelectorAll('.answer') as NodeListOf<HTMLElement>;
-    this.answerStatus = true;
-    allAnswers.forEach((answer: HTMLElement) => {
-      answer.style.background = "lightseagreen";
+  // Method to highlight and check selected back in the flashcard game
+  checkBack(selectedFlashcard: IFlashcard): void {
+    // Reset styles for all backs
+    const allBacks = document.querySelectorAll('.back') as NodeListOf<HTMLElement>;
+    this.backStatus = true;
+    allBacks.forEach((back: HTMLElement) => {
+      back.style.background = "lightseagreen";
     });
 
-    // Highlight the clicked answer
-    const clickedAnswer = document.getElementById(selectedFlashcard.FlashcardId + "_answer") as HTMLElement;
-    if (clickedAnswer) {
-      clickedAnswer.style.background = "green";
+    // Highlight the clicked back
+    const clickedBack = document.getElementById(selectedFlashcard.FlashcardId + "_back") as HTMLElement;
+    if (clickedBack) {
+      clickedBack.style.background = "green";
     }
-    this.flashcardAnswer = selectedFlashcard;
+    this.flashcardBack = selectedFlashcard;
 
-    // Check if both question and answer have been selected
-    if (this.questionStatus && this.answerStatus) {
+    // Check if both front and back have been selected
+    if (this.frontStatus && this.backStatus) {
       this.checker();
-      this.questionStatus = false;
-      this.answerStatus = false;
+      this.frontStatus = false;
+      this.backStatus = false;
     }
   }
 
-  // Method to check if the selected question and answer match
+  // Method to check if the selected front and back match
   checker(): void {
-    const question = document.getElementById(this.flashcardQuestion.FlashcardId + "_question") as HTMLElement;
-    const answer = document.getElementById(this.flashcardAnswer.FlashcardId + "_answer") as HTMLElement;
+    const front = document.getElementById(this.flashcardFront.FlashcardId + "_front") as HTMLElement;
+    const back = document.getElementById(this.flashcardBack.FlashcardId + "_back") as HTMLElement;
     const progressBar = document.getElementById('progress-bar2') as HTMLElement;
     const instruction = document.getElementById('ins') as HTMLElement;
 
-    // Check if the selected question and answer match
-    if (this.flashcardQuestion.FlashcardId == this.flashcardAnswer.FlashcardId) {
-      question.style.display = 'none';
-      answer.style.display = 'none';
+    // Check if the selected front and back match
+    if (this.flashcardFront.FlashcardId == this.flashcardBack.FlashcardId) {
+      front.style.display = 'none';
+      back.style.display = 'none';
 
       // Display correct match message
       instruction.innerHTML = "Correct!!";
       setTimeout(() => {
-        instruction.innerHTML = "Match the correct Questions and Answers";
+        instruction.innerHTML = "Match the correct Fronts and Backs";
       }, 1000);
 
       // Update progress bar
@@ -172,18 +172,18 @@ export class FlashcardtwoComponent implements OnInit {
     } else {
       // Display wrong match message
       instruction.innerHTML = "WRONG MATCH";
-      question.style.background = "red";
-      answer.style.background = "red";
+      front.style.background = "red";
+      back.style.background = "red";
 
       // Reset styles after a brief delay
       setTimeout(() => {
-        answer.style.background = 'lightseagreen';
-        question.style.background = "lightblue";
+        back.style.background = 'lightseagreen';
+        front.style.background = "lightblue";
       }, 200);
 
       // Reset instruction message after a delay
       setTimeout(() => {
-        instruction.innerHTML = "Match the correct Questions and Answers";
+        instruction.innerHTML = "Match the correct Fronts and Backs";
       }, 1000);
     }
   }

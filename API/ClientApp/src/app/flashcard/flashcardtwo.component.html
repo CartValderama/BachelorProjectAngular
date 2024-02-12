@@ -39,7 +39,7 @@
   </div>
   <!-- Instructions -->
   <div class="instruction mt-4 p-3">
-    <p id="ins">Match the correct Questions and Answers</p>
+    <p id="ins">Match the correct Fronts and Backs</p>
   </div>
   <div class="container">
     <!-- Progress bar -->
@@ -53,28 +53,28 @@
         Restart
       </button>
     </div>
-    <!-- Match card and answer card display -->
+    <!-- Match card and back card display -->
     <div class="d-flex justify-content-between mt-3">
-      <!-- Display match questions -->
+      <!-- Display match fronts -->
       <div class="d-flex flex-column align-items-center justify-content-center w-50 text-center" style="word-break: break-word">
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-2 p-2">
-          <div *ngFor="let flashcard of randomQuestions">
-            <div class="col match-card" (click)="checkQuestion(flashcard)">
-              <div class="question shadow-sm rounded-1 w-100 h-100 user-select-none" [id]="flashcard.FlashcardId + '_question'">
-                {{flashcard.Question}}
+          <div *ngFor="let flashcard of randomFronts">
+            <div class="col match-card" (click)="checkFront(flashcard)">
+              <div class="front shadow-sm rounded-1 w-100 h-100 user-select-none" [id]="flashcard.FlashcardId + '_front'">
+                {{flashcard.Front}}
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Display match answers -->
+      <!-- Display match backs -->
       <div class="d-flex flex-column align-items-center w-50 text-center">
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-2 p-2">
-          <div *ngFor="let flashcard of randomAnswers">
-            <div class="col match-card" (click)="checkAnswer(flashcard)">
-              <div class="answer shadow-sm rounded-1 w-100 h-100 user-select-none" [id]="flashcard.FlashcardId + '_answer'">
-                {{flashcard.Answer}}
+          <div *ngFor="let flashcard of randomBacks">
+            <div class="col match-card" (click)="checkBack(flashcard)">
+              <div class="back shadow-sm rounded-1 w-100 h-100 user-select-none" [id]="flashcard.FlashcardId + '_back'">
+                {{flashcard.Back}}
               </div>
             </div>
           </div>

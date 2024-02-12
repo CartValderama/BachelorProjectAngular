@@ -22,8 +22,8 @@ export class FlashcardoneComponent implements OnInit {
   flashcards: IFlashcard[] = []
   flashcard: IFlashcard = {
     FlashcardId: 0,
-    Question: "",
-    Answer: "",
+    Front: "",
+    Back: "",
     CreationDate: "",
     DeckId: 0
   }
@@ -165,7 +165,7 @@ export class FlashcardoneComponent implements OnInit {
       status.style.display = "inline";
       hintButton.disabled = true
     }
-    const description = await this.createHint(this.flashcard.Question, this.flashcard.Answer);
+    const description = await this.createHint(this.flashcard.Front, this.flashcard.Back);
 
     if (hintButton) {
       hintButton.hidden = true;
@@ -180,7 +180,7 @@ export class FlashcardoneComponent implements OnInit {
     }
   }
 
-  async createHint(question: string, preWrittenAnswer: string) {
+  async createHint(front: string, preWrittenBack: string) {
     const hintButton = document.getElementById('hintButton_' + this.flashcard.FlashcardId) as HTMLButtonElement;
     // const imageDescription = "";
     // Hard coding the API key for easier access
@@ -197,7 +197,7 @@ export class FlashcardoneComponent implements OnInit {
         messages: [
           {
             role: "system",
-            content: `Given the question: ${question}, and the provided answer: ${preWrittenAnswer}, could you offer a hint that aligns with the provided answer? The hint should be associative and descriptive, helping to understand or justify the given answer, even if it deviates from the factual answer. The hint should be insightful yet subtle, preserving the learning process`,
+            content: `Given the front: ${front}, and the provided back: ${preWrittenBack}, could you offer a hint that aligns with the provided back? The hint should be associative and descriptive, helping to understand or justify the given back, even if it deviates from the factual back. The hint should be insightful yet subtle, preserving the learning process`,
           }
         ],
         temperature: 0.8,

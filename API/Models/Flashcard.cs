@@ -9,13 +9,13 @@ public class Flashcard
     [JsonPropertyName("FlashcardId")]
     public int FlashcardId { get; set; }
 
-    [JsonPropertyName("Question")]
+    [JsonPropertyName("Front")]
     //[StringLength(120)]
-    public string Question { get; set; } = string.Empty;
+    public string Front { get; set; } = string.Empty;
 
-    [JsonPropertyName("Answer")]
+    [JsonPropertyName("Back")]
     //[StringLength(120)]
-    public string Answer { get; set; } = string.Empty;
+    public string Back { get; set; } = string.Empty;
 
     [JsonPropertyName("CreationDate")]
     public DateTime CreationDate { get; set; } = DateTime.Today;

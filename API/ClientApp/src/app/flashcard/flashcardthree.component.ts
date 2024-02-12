@@ -22,8 +22,8 @@ export class FlashcardthreeComponent {
   flashcards: IFlashcard[] = []
   flashcard: IFlashcard = {
     FlashcardId: 0,
-    Question: "",
-    Answer: "",
+    Front: "",
+    Back: "",
     CreationDate: "",
     DeckId: 0
   }
@@ -73,19 +73,19 @@ export class FlashcardthreeComponent {
     return array.slice().sort(() => Math.random() - 0.5);
   }
 
-  getAnswer(flashcardid: number) {
+  getBack(flashcardid: number) {
     const submit = document.getElementById("submit_" + flashcardid) as HTMLButtonElement;
     const status = document.getElementById("status_" + flashcardid) as HTMLElement;
     const loading = document.getElementById("loading_" + flashcardid) as HTMLElement;
     const check = document.getElementById("check_" + flashcardid) as HTMLElement;
     const text = document.getElementById("text_" + flashcardid) as HTMLTextAreaElement;
-    const flashcardQuestion = document.getElementById("question_" + flashcardid) as HTMLElement;
+    const flashcardFront = document.getElementById("front_" + flashcardid) as HTMLElement;
     const error = document.getElementById("error_" + flashcardid) as HTMLElement;
 
 
-    // Get the answer input within the flashcard
+    // Get the back input within the flashcard
     const userInput = text.value;
-    const question = flashcardQuestion.innerText;
+    const front = flashcardFront.innerText;
     console.log(userInput)
 
 
@@ -97,12 +97,12 @@ export class FlashcardthreeComponent {
       status.style.display = "inline";
       submit.disabled = true;
       error.innerHTML = "";
-      this.fetchData(question, userInput, flashcardid);
+      this.fetchData(front, userInput, flashcardid);
     }
 
   }
 
-  async fetchData(question: string, input: string, flashcardid: number) {
+  async fetchData(front: string, input: string, flashcardid: number) {
     const submit = document.getElementById("submit_" + flashcardid) as HTMLButtonElement;
     const status = document.getElementById("status_" + flashcardid) as HTMLElement;
     const loading = document.getElementById("loading_" + flashcardid) as HTMLElement;
@@ -135,11 +135,11 @@ export class FlashcardthreeComponent {
         messages: [
           {
             role: "system",
-            content: "You are an evaluator assessing the user's response to a flashcard question they have created. Provide a strict evaluation. The number rating should be 0-4, 0 being the worst. The format should be: '(number rating) ||| Rating: (qualitative rating) ||| Reasoning: (explanation).'",
+            content: "You are an evaluator assessing the user's response to a flashcard front they have created. Provide a strict evaluation. The number rating should be 0-4, 0 being the worst. The format should be: '(number rating) ||| Rating: (qualitative rating) ||| Reasoning: (explanation).'",
           },
           {
             role: "user",
-            content: `Flashcard Question: ${question} | User's Response: ${input}`,
+            content: `Flashcard Front: ${front} | User's Response: ${input}`,
           },
         ],
         temperature: 0.1,
@@ -170,7 +170,7 @@ export class FlashcardthreeComponent {
       explanation = response;
 
       const instruction3 = document.getElementById("ins3_" + flashcardid) as HTMLElement;
-      const answer3 = document.getElementById("ans3_" + flashcardid) as HTMLElement;
+      const back3 = document.getElementById("ans3_" + flashcardid) as HTMLElement;
 
 
       if (openaiResponded(numberRating, qualitativeRating, explanation)) {
@@ -179,7 +179,7 @@ export class FlashcardthreeComponent {
         status.style.display = "none";
         loading.style.display = "none";
         instruction3.style.display = "none";
-        answer3.style.display = "flex";
+        back3.style.display = "flex";
         displayResponse(flashcardid);
       } else {
         check.style.display = "inline"

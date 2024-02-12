@@ -17,8 +17,8 @@ export class FlashcardformComponent implements OnInit {
   deckId: number = -1;
   flashcard: IFlashcard = {
     FlashcardId: 0,
-    Question: "",
-    Answer: "",
+    Front: "",
+    Back: "",
     CreationDate: "",
     DeckId: 0
   };
@@ -32,11 +32,11 @@ export class FlashcardformComponent implements OnInit {
   ) {
     // Create the form with default values and validation rules
     this.flashcardForm = _formbuilder.group({
-      question: ["", [
+      front: ["", [
         Validators.required,
         Validators.maxLength(120)
       ]],
-      answer: ["", [
+      back: ["", [
         Validators.required,
         Validators.maxLength(120)
       ]],
@@ -112,8 +112,8 @@ export class FlashcardformComponent implements OnInit {
         next: (flashcard: any) => {
           // Update the flashcardForm with the retrieved flashcard details.
           this.flashcardForm.patchValue({
-            question: flashcard.Question,
-            answer: flashcard.Answer
+            front: flashcard.Front,
+            back: flashcard.Back
           });
         },
         // Error callback: Invoked when an error occurs during the fetch operation.
@@ -125,32 +125,32 @@ export class FlashcardformComponent implements OnInit {
 
   // Method for flashcard validation
   validationFlashcard() {
-    const question: HTMLInputElement | null = document.getElementById("question") as HTMLInputElement;
-    const answer: HTMLInputElement | null = document.getElementById("answer") as HTMLInputElement;
+    const front: HTMLInputElement | null = document.getElementById("front") as HTMLInputElement;
+    const back: HTMLInputElement | null = document.getElementById("back") as HTMLInputElement;
 
-    const validationQuestion: HTMLElement | null = document.getElementById("validationQuestion");
-    const validationAnswer: HTMLElement | null = document.getElementById("validationAnswer");
+    const validationFront: HTMLElement | null = document.getElementById("validationFront");
+    const validationBack: HTMLElement | null = document.getElementById("validationBack");
 
-    if (validationQuestion) {
-      validationQuestion.style.display = "none";
+    if (validationFront) {
+      validationFront.style.display = "none";
     }
 
-    if (validationAnswer) {
-      validationAnswer.style.display = "none";
+    if (validationBack) {
+      validationBack.style.display = "none";
     }
 
-    if (validationQuestion && question && validationAnswer && answer) {
-      question.addEventListener("input", () => {
-        validationQuestion.style.display = "block";
+    if (validationFront && front && validationBack && back) {
+      front.addEventListener("input", () => {
+        validationFront.style.display = "block";
       });
 
-      answer.addEventListener("input", () => {
-        validationAnswer.style.display = "block";
+      back.addEventListener("input", () => {
+        validationBack.style.display = "block";
       });
 
       setTimeout(() => {
-        validationAnswer.style.display = "block";
-        validationQuestion.style.display = "block";
+        validationBack.style.display = "block";
+        validationFront.style.display = "block";
       }, 10000);
     }
   }

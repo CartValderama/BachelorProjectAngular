@@ -39,7 +39,7 @@
   </div>
   <!-- Instructions -->
   <div class="instruction mt-4 p-3">
-    <p>Answer and the GPT will review it </p>
+    <p>Back and the GPT will review it </p>
   </div>
   <!-- Progress bar -->
   <div class="container mt-3 mb-4">
@@ -63,12 +63,12 @@
             <div class="d-flex h-100" id="type-3">
               <div class="d-flex flex-column p-4 justify-content-center h-100" [id]="'rating_' + flashcard.FlashcardId">
                 <div class="d-flex flex-column justify-content-end align-items-center h-100">
-                  <p [id]="'question_' + flashcard.FlashcardId">{{flashcard.Question}}</p>
+                  <p [id]="'front_' + flashcard.FlashcardId">{{flashcard.Front}}</p>
                 </div>
                 <div class="d-flex flex-column align-items-center">
-                  <textarea [id]="'text_' + flashcard.FlashcardId" class="w-100" placeholder="Your answer here"></textarea>
+                  <textarea [id]="'text_' + flashcard.FlashcardId" class="w-100" placeholder="Your back here"></textarea>
                   <p [id]="'error_' + flashcard.FlashcardId" style="color: red"></p>
-                  <button [id]="'submit_' + flashcard.FlashcardId" class="btn btn-primary w-50 submit3" type="button" (click)="getAnswer(flashcard.FlashcardId)">
+                  <button [id]="'submit_' + flashcard.FlashcardId" class="btn btn-primary w-50 submit3" type="button" (click)="getBack(flashcard.FlashcardId)">
                     <div [id]="'status_' + flashcard.FlashcardId" style="display: none">
                       <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                       <span class="sr-only">Loading...</span>
@@ -84,11 +84,11 @@
                   <h2 class="mb-3 mt-3">Instructions</h2>
                   <div>
                     <ul>
-                      <li>The flashcard's questions and answers should make sense for GPT to help.</li>
-                      <li>For each flashcard, read the question and input your answer in the provided text box.</li>
+                      <li>The flashcard's fronts and backs should make sense for GPT to help.</li>
+                      <li>For each flashcard, read the front and input your back in the provided text box.</li>
                       <li>Click the "Submit" button to get feedback from GPT.</li>
-                      <li>GPT will provide an explanation and rating for your answer.</li>
-                      <li>Please wait patiently while GPT reviews your answer.</li>
+                      <li>GPT will provide an explanation and rating for your back.</li>
+                      <li>Please wait patiently while GPT reviews your back.</li>
                     </ul>
                   </div>
 
@@ -110,8 +110,8 @@
 
                 <div [id]="'ans3_' + flashcard.FlashcardId" class="flex-column h-100" style="display: none;">
                   <div class="d-flex flex-column justify-content-center border-bottom border-4 pb-3" style="height: 45%">
-                    <p class="mb-3">Flashcard's Answer:</p>
-                    <p class="m-0">{{flashcard.Answer}}</p>
+                    <p class="mb-3">Flashcard's Back:</p>
+                    <p class="m-0">{{flashcard.Back}}</p>
                   </div>
                   <div class="d-flex flex-column  h-75 justify-content-center" style="height: 55%">
                     <p class="mb-3">GPT explanation:</p>
