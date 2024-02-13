@@ -9,8 +9,8 @@ public class Deck
     public int DeckId { get; set; }
 
     [JsonPropertyName("DeckName")]
-    [StringLength(15)]
-    [RegularExpression(@"[0-9a-zA-ZæøåÆØÅ. \-]{2,15}", ErrorMessage = "The Name must be numbers or letters and between 2 to 15 characters.")]
+    [StringLength(100)]
+    [RegularExpression(@"[0-9a-zA-ZæøåÆØÅ. \-]{2,100}", ErrorMessage = "The Name must be numbers or letters and between 2 to 100 characters.")]
     [DisplayName("Name")]
     public string DeckName { get; set; } = string.Empty;
 
