@@ -12,7 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<FlashcardProjectDbContext>(options =>
-    options.UseSqlite(
+    options.UseSqlServer(
         builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddScoped<IFlashcardRepository, FlashcardRepository>();
@@ -35,11 +35,16 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
-    // DBInit.Seed(app);
 
-    // Ensure the asynchronous Seed method is properly awaited, might have big files
-    DBInit.Seed(app).GetAwaiter().GetResult();
+    using (var scope = app.Services.CreateScope())
+    {
+        var dbContext = scope.ServiceProvider.GetRequiredService<FlashcardProjectDbContext>();
+        dbContext.Database.Migrate(); // Apply migrations
+        // Now it's safe to seed, as the database schema is up to date.
+        DBInit.Seed(app).GetAwaiter().GetResult();
+    }
 }
+
 
 app.UseStaticFiles();
 app.UseRouting();

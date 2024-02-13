@@ -10,8 +10,8 @@ public class Folder
     public int FolderId { get; set; }
 
     [JsonPropertyName("FolderName")]
-    [StringLength(15)]
-    [RegularExpression(@"[0-9a-zA-ZæøåÆØÅ. \-]{2,15}", ErrorMessage = "The Name must be numbers or letters and between 2 to 15 characters.")]
+    [StringLength(100)]
+    [RegularExpression(@"[0-9a-zA-ZæøåÆØÅ. \-]{2,100}", ErrorMessage = "The Name must be numbers or letters and between 2 to 100 characters.")]
     [DisplayName("Folder Name")]
     public string FolderName { get; set; } = string.Empty;
 

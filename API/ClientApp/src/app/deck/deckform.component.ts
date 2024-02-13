@@ -33,8 +33,8 @@ export class DeckformComponent {
       deckName: ["", [
         Validators.required,
         Validators.minLength(2),
-        Validators.maxLength(15),
-        Validators.pattern(/^[0-9a-zA-ZæøåÆØÅ. -]{2,15}$/)
+        Validators.maxLength(100),
+        Validators.pattern(/^[0-9a-zA-ZæøåÆØÅ. -]{2,100}$/)
       ]],
       deckDescription: ["", [Validators.maxLength(150)]],
       folderId: null,
