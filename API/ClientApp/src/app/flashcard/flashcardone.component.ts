@@ -184,7 +184,7 @@ export class FlashcardoneComponent implements OnInit {
     const hintButton = document.getElementById('hintButton_' + this.flashcard.FlashcardId) as HTMLButtonElement;
     // const imageDescription = "";
     // Hard coding the API key for easier access
-    const API_KEY = "";
+    const API_KEY = "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";
     // PUT THE API KEY HERE
     const response1 = await fetch("https://api.openai.com/v1/chat/completions", {
       method: 'POST',

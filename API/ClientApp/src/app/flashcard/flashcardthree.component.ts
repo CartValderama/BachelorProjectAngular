@@ -121,7 +121,7 @@ export class FlashcardthreeComponent {
     }; 
 
     // Hard coding the API key for easier access
-    const API_KEY = "";
+    const API_KEY = "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";
     // PUT THE API KEY HERE
 
     const response1 = await fetch("https://api.openai.com/v1/chat/completions", {
