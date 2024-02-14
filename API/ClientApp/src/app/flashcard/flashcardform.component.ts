@@ -34,11 +34,11 @@ export class FlashcardformComponent implements OnInit {
     this.flashcardForm = _formbuilder.group({
       front: ["", [
         Validators.required,
-        Validators.maxLength(120)
+        Validators.maxLength(500)
       ]],
       back: ["", [
         Validators.required,
-        Validators.maxLength(120)
+        Validators.maxLength(500)
       ]],
       deckId: null
     });
