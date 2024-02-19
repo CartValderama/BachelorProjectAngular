@@ -68,7 +68,7 @@ stages:
             - task: AzureWebApp@1
               displayName: 'Azure App Service Deploy: website'
               inputs:
-                azureSubscription: 'AI.CEE-Connection'
+                azureSubscription: 'aicee-bachelor-connection'
                 appType: 'webAppLinux'
                 appName: 'aicee-elijah-api'
                 package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/*.zip'
