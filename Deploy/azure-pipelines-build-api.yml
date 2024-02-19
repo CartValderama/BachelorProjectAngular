@@ -70,6 +70,6 @@ stages:
               inputs:
                 azureSubscription: 'aicee-bachelor-connection'
                 appType: 'webAppLinux'
-                appName: 'aicee-elijah-api'
+                appName: 'aicee-api'
                 package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/*.zip'
 
