@@ -8,8 +8,8 @@ param location string = resourceGroup().location
 ])
 param environmentType string
 
-var appServiceAppName = 'aicee-elijah-api'
-var appServicePlanName = 'aicee-elijah-api-plan'
+var appServiceAppName = 'aicee-api'
+var appServicePlanName = 'aicee-api-plan'
 
 // Define the SKUs for each component based on the environment type.
 var environmentConfigurationMap = {
