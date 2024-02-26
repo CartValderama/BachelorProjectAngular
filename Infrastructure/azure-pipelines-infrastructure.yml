@@ -16,4 +16,4 @@ jobs:
       resourceGroupName: $(ResourceGroupName)
       csmFile: Infrastructure/infrastructure.bicep
       overrideParameters: >
-        -environmentType $(EnvironmentType)
+        -environmentType $(EnvironmentType) -administratorLogin $(SqlAdminLogin) -administratorLoginPassword $(SqlAdminPassword)
