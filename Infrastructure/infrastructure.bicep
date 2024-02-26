@@ -53,6 +53,9 @@ resource appServiceApp 'Microsoft.Web/sites@2023-01-01' = {
 
 
 // SQL Server and DB resources
+@description('Test - setting the location manually')
+param sqlServerDbLocation string = 'Sweden Central'
+
 @description('The name of the SQL logical server.')
 param serverName string = 'aicee-sql-server-test'
 
@@ -68,7 +71,7 @@ param administratorLoginPassword string
 
 resource sqlServer 'Microsoft.Sql/servers@2022-05-01-preview' = {
   name: serverName
-  location: location
+  location: sqlServerDbLocation
   properties: {
     administratorLogin: administratorLogin
     administratorLoginPassword: administratorLoginPassword
@@ -78,7 +81,7 @@ resource sqlServer 'Microsoft.Sql/servers@2022-05-01-preview' = {
 resource sqlDB 'Microsoft.Sql/servers/databases@2022-05-01-preview' = {
   parent: sqlServer
   name: sqlDBName
-  location: location
+  location: sqlServerDbLocation
   sku: {
     name: 'Standard'
     tier: 'Standard'
