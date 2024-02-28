@@ -1,5 +1,5 @@
 @description('The Azure region into which the resources should be deployed.')
-param location string = resourceGroup().location
+param location string = 'Sweden Central'
 
 @description('The type of environment. This must be nonprod or prod.')
 @allowed([
@@ -53,14 +53,12 @@ resource appServiceApp 'Microsoft.Web/sites@2023-01-01' = {
 
 
 // SQL Server and DB resources
-@description('Test - setting the location manually')
-param sqlServerDbLocation string = 'Sweden Central'
 
 @description('The name of the SQL logical server.')
-param serverName string = 'aicee-sql-server-test'
+param serverName string = 'aicee-sql-server'
 
 @description('The name of the SQL Database.')
-param sqlDBName string = 'aicee-sql-database-test'
+param sqlDBName string = 'aicee-sql-database'
 
 @description('The administrator username of the SQL logical server.')
 param administratorLogin string
@@ -71,7 +69,7 @@ param administratorLoginPassword string
 
 resource sqlServer 'Microsoft.Sql/servers@2022-05-01-preview' = {
   name: serverName
-  location: sqlServerDbLocation
+  location: location
   properties: {
     administratorLogin: administratorLogin
     administratorLoginPassword: administratorLoginPassword
@@ -81,7 +79,7 @@ resource sqlServer 'Microsoft.Sql/servers@2022-05-01-preview' = {
 resource sqlDB 'Microsoft.Sql/servers/databases@2022-05-01-preview' = {
   parent: sqlServer
   name: sqlDBName
-  location: sqlServerDbLocation
+  location: location
   sku: {
     name: 'Standard'
     tier: 'Standard'
