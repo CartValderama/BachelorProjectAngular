@@ -126,14 +126,14 @@ param deployments array = [
     raiPolicyName: ''
     capacity: 1
     scaleType: 'Standard'
-  },
+  }
   {
     name: 'gpt-35-turbo'
     version: '1106'
     raiPolicyName: ''
     capacity: 1
     scaleType: 'Standard'
-  },
+  }
   {
     name: 'gpt-4'
     version: '1106'
