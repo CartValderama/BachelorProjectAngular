@@ -85,3 +85,95 @@ resource sqlDB 'Microsoft.Sql/servers/databases@2022-05-01-preview' = {
     tier: 'Standard'
   }
 }
+
+
+// OpenAI Bicep Module
+
+// Parameters
+@description('Specifies the name of the Azure OpenAI resource.')
+param OpenAIServiceName string = 'aks-${uniqueString(resourceGroup().id)}'
+
+@description('Specifies the resource model definition representing SKU.')
+param sku object = {
+  name: 'S0'
+}
+
+@description('Specifies the identity of the OpenAI resource.')
+param identity object = {
+  type: 'SystemAssigned'
+}
+
+@description('Specifies the resource tags.')
+param tags object = {
+    environment: 'development'
+}
+
+//@description('Specifies an optional subdomain name used for token-based authentication.')
+//param customSubDomainName string = ''
+
+@description('Specifies whether or not public endpoint access is allowed for this account.')
+@allowed([
+  'Enabled'
+  'Disabled'
+])
+param publicNetworkAccess string = 'Enabled'
+
+@description('Specifies the OpenAI deployments to create.')
+param deployments array = [
+  {
+    name: 'text-embedding-ada-002'
+    version: '2'
+    raiPolicyName: ''
+    capacity: 1
+    scaleType: 'Standard'
+  },
+  {
+    name: 'gpt-35-turbo'
+    version: '1106'
+    raiPolicyName: ''
+    capacity: 1
+    scaleType: 'Standard'
+  },
+  {
+    name: 'gpt-4'
+    version: '1106'
+    raiPolicyName: ''
+    capacity: 1
+    scaleType: 'Standard'
+  }
+]
+
+// Resources
+resource openAi 'Microsoft.CognitiveServices/accounts@2022-12-01' = {
+  name: OpenAIServiceName
+  location: resourceGroup().location // Assuming deployment in the resource group's location
+  sku: sku
+  kind: 'OpenAI'
+  identity: identity
+  tags: tags
+  properties: {
+    publicNetworkAccess: publicNetworkAccess
+  }
+}
+
+resource model 'Microsoft.CognitiveServices/accounts/deployments@2022-12-01' = 
+  [for deployment in deployments: {
+    name: deployment.name
+    parent: openAi
+    properties: {
+      model: {
+        format: 'OpenAI'
+        name: deployment.name
+        version: deployment.version
+      }
+      raiPolicyName: deployment.raiPolicyName
+      scaleSettings: {
+        capacity: deployment.capacity
+        scaleType: deployment.scaleType
+      }
+    }
+  }]
+
+// Outputs
+output id string = openAi.id
+output name string = openAi.name
