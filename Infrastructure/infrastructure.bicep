@@ -156,7 +156,7 @@ resource openAi 'Microsoft.CognitiveServices/accounts@2022-12-01' = {
   }
 }
 
-resource model 'Microsoft.CognitiveServices/accounts/deployments@2022-12-01' = [for deployment in deployments: {
+resource model 'Microsoft.CognitiveServices/accounts/deployments@2022-12-01' =[for deployment in deployments: {
   name: deployment.name
   parent: openAi
   properties: {
