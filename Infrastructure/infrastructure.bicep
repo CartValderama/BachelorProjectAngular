@@ -156,23 +156,22 @@ resource openAi 'Microsoft.CognitiveServices/accounts@2022-12-01' = {
   }
 }
 
-resource model 'Microsoft.CognitiveServices/accounts/deployments@2022-12-01' = 
-  [for deployment in deployments: {
-    name: deployment.name
-    parent: openAi
-    properties: {
-      model: {
-        format: 'OpenAI'
-        name: deployment.name
-        version: deployment.version
-      }
-      raiPolicyName: deployment.raiPolicyName
-      scaleSettings: {
-        capacity: deployment.capacity
-        scaleType: deployment.scaleType
-      }
+resource model 'Microsoft.CognitiveServices/accounts/deployments@2022-12-01' = [for deployment in deployments: {
+  name: deployment.name
+  parent: openAi
+  properties: {
+    model: {
+      format: 'OpenAI'
+      name: deployment.name
+      version: deployment.version
     }
-  }]
+    raiPolicyName: deployment.raiPolicyName
+    scaleSettings: {
+      capacity: deployment.capacity
+      scaleType: deployment.scaleType
+    }
+  }
+}]
 
 // Outputs
 output id string = openAi.id
