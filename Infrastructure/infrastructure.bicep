@@ -146,7 +146,7 @@ param deployments array = [
 // Resources
 resource openAi 'Microsoft.CognitiveServices/accounts@2022-12-01' = {
   name: OpenAIServiceName
-  location: resourceGroup().location // Assuming deployment in the resource group's location
+  location: location 
   sku: sku
   kind: 'OpenAI'
   identity: identity
