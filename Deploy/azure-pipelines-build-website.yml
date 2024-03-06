@@ -63,4 +63,4 @@ stages:
                     appType: 'webAppLinux' # Adjust if you're deploying to a Windows web app
                     appName: 'aicee'
                     package: '$(Pipeline.Workspace)/webapp/webapp.zip'
-                    runtimeStack: 'NODE|18-lts' # Adjust the runtime stack based on your Node.js version
+                    #runtimeStack: 'NODE|18-lts' # Adjust the runtime stack based on your Node.js version
