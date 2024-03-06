@@ -30,6 +30,7 @@ stages:
           - script: |
               npm install
               npm run build
+              npx vite build
             workingDirectory: WebApp
             displayName: 'Install dependencies and build'
 
