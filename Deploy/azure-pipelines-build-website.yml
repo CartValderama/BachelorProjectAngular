@@ -10,7 +10,7 @@ pool:
   vmImage: ubuntu-latest
 
 variables:
-  nodeVersion: '18.17'
+  nodeVersion: '18.x'
   azureSubscription: 'aicee-bachelor-connection'
   webAppName: 'aicee'
   environmentName: 'dev'
@@ -29,7 +29,6 @@ stages:
             
           - script: |
               npm install
-              npm run build
               npx vite build
             workingDirectory: WebApp
             displayName: 'Install dependencies and build'
