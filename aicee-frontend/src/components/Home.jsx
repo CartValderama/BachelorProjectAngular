@@ -71,7 +71,7 @@ const posts = [
 function Home() {
   return (
     <>
-      <NavBar />;
+      <NavBar />;<h1>hello world</h1>
       <Feature />
       <CallToAction />
       <Team />
