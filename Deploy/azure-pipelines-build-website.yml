@@ -11,9 +11,9 @@ pool:
 
 variables:
   nodeVersion: '18.17'
-  azureSubscription: '<YourAzureServiceConnection>'
-  webAppName: '<YourWebAppName>'
-  environmentName: '<YourEnvironmentName>'
+  azureSubscription: 'aicee-bachelor-connection'
+  webAppName: 'aicee'
+  environmentName: 'dev'
 
 stages:
   - stage: Build
@@ -51,15 +51,15 @@ stages:
     jobs:
       - deployment: DeployJob
         displayName: 'Deploy to Azure Web App'
-        environment: $(environmentName)
+        environment: dev
         strategy:
           runOnce:
             deploy:
               steps:
                 - task: AzureWebApp@1
                   inputs:
-                    azureSubscription: aicee-bachelor-connection
+                    azureSubscription: 'aicee-bachelor-connection'
                     appType: 'webAppLinux' # Adjust if you're deploying to a Windows web app
-                    appName: aicee
+                    appName: 'aicee'
                     package: '$(Pipeline.Workspace)/webapp/webapp.zip'
                     runtimeStack: 'NODE|18-lts' # Adjust the runtime stack based on your Node.js version
