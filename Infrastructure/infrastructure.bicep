@@ -10,6 +10,7 @@ param environmentType string
 
 var appServiceAppName = 'aicee-api'
 var appServicePlanName = 'aicee-api-plan'
+var reactAppServiceAppName = 'aicee'
 
 // Define the SKUs for each component based on the environment type.
 var environmentConfigurationMap = {
@@ -50,6 +51,22 @@ resource appServiceApp 'Microsoft.Web/sites@2023-01-01' = {
     }
   }
 }
+
+
+resource reactAppServiceApp 'Microsoft.Web/sites@2023-01-01' = {
+  name: reactAppServiceAppName
+  location: location
+  properties: {
+    serverFarmId: appServicePlan.id
+    httpsOnly: true
+    siteConfig: {
+      appSettings: [
+        
+      ]
+    }
+  }
+}
+
 
 
 // SQL Server and DB resources
