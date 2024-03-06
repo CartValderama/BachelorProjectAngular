@@ -28,8 +28,7 @@ stages:
             displayName: 'Install Node.js'
             
           - script: |
-              npm install --verbose
-              npx --verbose vite build
+              npm run build
             workingDirectory: WebApp
             displayName: 'Install dependencies and build'
 
