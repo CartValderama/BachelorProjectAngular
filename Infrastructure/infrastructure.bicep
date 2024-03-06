@@ -103,7 +103,7 @@ resource sqlDB 'Microsoft.Sql/servers/databases@2022-05-01-preview' = {
   }
 }
 
-
+'''
 // OpenAI Bicep Module
 
 // Parameters
@@ -186,3 +186,4 @@ resource model 'Microsoft.CognitiveServices/accounts/deployments@2022-12-01' =[f
 // Outputs
 output id string = openAi.id
 output name string = openAi.name
+'''
